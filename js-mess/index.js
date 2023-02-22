@@ -1,93 +1,129 @@
-// FUNCTIONS
+// Objects
 
-// 1) Function Declaration / Statement
+// Object : An object consists of a collection of properties
 
-// console.log(square(3));     // 9    
+// Property -- method : function related with an object
 
-// function square(number) {   // number -> parameter
-//     return (number * number);
-// }
-
-// square(6);   6 -> arguman
-// console.log(square(6));
-
-// console.log(square(4));     //  () -> invoke
-
-// Function declaration -> works as hoisted
-
-
-// 2) Function Expression
-// If a function is assigned to a variable, it's called function expression 
-
-// Function name is optional (Anonymous function can also be)
-
-// const square = function square(number) {
-//     return (number * number);
-// }
-
-// console.log(square);
-// console.log(square(2));
-
-// First - class functions
-// When a function is assigned to a variable, I can treat it like variable
-
-// const myArr = [7, "Fatih", function () { console.log('Array element'); }];
-
-// myArr[2]();
-
-// const myObj = {
+// const person = {
+//     name: "Fatih",
+//     surname: "Cihan",
 //     age: 30,
-//     name: 'Fatih',
-//     func: function () { console.log('Object element'); }
-// }
-
-// myObj.func();
-
-// console.log(20 + (function () { return 10; })());   // IIEF
-
-// console.log();
-
-// var square = function square(number) {
-//     return (number * number);
-// }
-
-// Basically differences
-// Function Expression is not hoisted.
-// Function expression can be anonymous, but i have to give name in function declaration
-
-// Benefits of First - class functions 
-// **We can pass a function as an argument to another function
-
-// const addFive = function (number, func) {
-//     console.log(number + func());
-// }
-
-// addFive(10, function () { return 5; })
-
-// const myFunc = function (num) {
-//     return function toDouble() {
-//         console.log(num * 2);
+//     languages: ['Turkish', "English", "Spanish"],
+//     fullName: function () {
+//         return this.name + " " + this.surname
+//     },
+//     address: {
+//         city: "Aydin",
+//         district: "Efeler"
 //     }
 // }
 
-// myFunc(5)();
 
-// const result = myFunc(7);
-// result();
+// Object Literal
 
-// IIFE (Immediately Invocable Function Expression)
+// const person = {
+//     name: 'Fatih',
+//     surname: 'Cihan',
+//     age: 30,
+//     fullName: function () {
+//         return this.name + " " + this.surname
+//     }
+// }
 
-// (function () {
-//     console.log(5 + 12);
-// })();
+// console.log(person);
 
-// console.log(sum);  
+// // Dot notation
+// console.log(person.name);
+// console.log(person.fullName());
 
-// sum();
-// console.log(sum);
+// person.job = "Student";
 
-function square(number1, number2) {
-    return number1 * number2;
+// console.log(person);
+// console.log(person.job);
+
+// // Bracket notation
+
+// console.log(person['name']);
+// console.log(person['fullName']());      
+
+
+// const person = {
+//     name: 'Fatih',
+//     surname: 'Cihan',
+//     age: 30,
+//     fullName: function () {
+//         return this.name + " " + this.surname
+//     }
+// }
+
+// person.address = {
+
+// };
+
+// console.log(person);
+// person.address.city = "Aydin";
+// console.log(person);
+
+// Constructor 
+
+// function Person(name, surname, age) {
+//     const obj = {}
+//     obj.name = name;
+//     obj.surname = surname;
+//     obj.age = age;
+//     obj.fullName = function () {
+//         return this.name + " " + this.surname;
+//     }
+//     return obj;
+// }
+
+// function Person(name, surname, age) {
+//     // this -> current object
+//     this.name = name;
+//     this.surname = surname;
+//     this.age = age;
+//     this.fullName = function () {
+//         return this.name + " " + this.surname;
+//     }
+// }
+
+// const person1 = new Person("Fatih", "Cihan", 30);
+// const person2 = new Person("X", "Y", 25);
+// console.log(person1);
+// console.log(person2);
+
+// Object constructor
+
+// const person1 = new Object();
+// person1.name = "Fatih";
+// person1.surname = "Cihan";
+// person1.age = 30;
+// person1.fullName = function () {
+//     console.log(this);
+//     return this.name + " " + this.surname;
+// }
+
+// console.log(person1);
+// console.log(person1.age);
+// console.log(person1.fullName());
+
+// Creating an object with the Object.create() method 
+
+const person = {
+    name: "Fatih",
+    surname: "Cihan",
+    age: 30,
+    fullName: function () {
+        return this.name + " " + this.surname
+    },
 }
 
-console.log(square.length);     // 2
+console.log(person);
+
+const test = Object.create(person);
+test.name = "test name";
+test.surname = "test surname";
+test.age = 5;
+
+console.log(test);
+console.log(test.fullName());  // test name test surname  -> because of the inheritance
